@@ -294,53 +294,6 @@ final class WeatherViewController: UIViewController {
             }
         }
     }
-
-    private static func makeLayout111() -> UICollectionViewLayout {
-        UICollectionViewCompositionalLayout { sectionIndex, environment in
-            guard let section = Section(rawValue: sectionIndex) else { return nil }
-
-            switch section {
-            case .current:
-                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-                let group = NSCollectionLayoutGroup.vertical(
-                    layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(190)),
-                    subitems: [item]
-                )
-                let section = NSCollectionLayoutSection(group: group)
-                section.contentInsets = .init(top: 0, leading: 0, bottom: 12, trailing: 0)
-                return section
-
-            case .hourly:
-                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(72), heightDimension: .absolute(112)))
-                let group = NSCollectionLayoutGroup.horizontal(
-                    layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(112)),
-                    subitems: [item]
-                )
-                group.interItemSpacing = .fixed(10)
-                let section = NSCollectionLayoutSection(group: group)
-                section.orthogonalScrollingBehavior = .continuous
-//                section.contentInsets = .init(top: 0, leading: 0, bottom: 14, trailing: 0)
-                section.contentInsets = NSDirectionalEdgeInsets(
-                    top: 8,
-                    leading: 16,
-                    bottom: 24,
-                    trailing: 16
-                )
-                return section
-
-            case .daily:
-                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(64)))
-                let group = NSCollectionLayoutGroup.vertical(
-                    layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(64 * 3)),
-                    subitems: [item]
-                )
-                group.interItemSpacing = .fixed(10)
-                let section = NSCollectionLayoutSection(group: group)
-                section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 20)
-                return section
-            }
-        }
-    }
 }
 
 private final class GradientBackgroundView: UIView {
